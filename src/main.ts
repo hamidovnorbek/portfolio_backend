@@ -26,8 +26,11 @@ class App {
         this.adminApp = await NestFactory.create(AdminAppModule, nestOptions);
         this.mobileApp = await NestFactory.create(MobileAppModule, nestOptions);
 
-        const apps = [this.adminApp, this.mobileApp];
-        for (const app of apps) {
+        const appsWithPrefix: { app: INestApplication; prefix: string }[] = [
+            { app: this.adminApp, prefix: 'api' },
+            { app: this.mobileApp, prefix: 'v1' },
+        ];
+        for (const { app, prefix } of appsWithPrefix) {
             app.useGlobalPipes(
                 new ValidationPipe({
                     whitelist: true,
@@ -37,7 +40,7 @@ class App {
                     },
                 }),
             )
-                .setGlobalPrefix('v1')
+                .setGlobalPrefix(prefix)
                 .useGlobalFilters(new AllExceptionFilter())
                 .useGlobalInterceptors(new TransformInterceptor())
                 .enableCors();

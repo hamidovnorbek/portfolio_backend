@@ -6,6 +6,18 @@ export enum ErrorCodes {
     EMPLOYEE = 10100,
     CURRENCY = 10200,
     CURRENCY_VALUE = 10300,
+
+    // Portfolio domain
+    USER = 12100,
+    HERO = 12200,
+    METRIC = 12300,
+    EXPERIENCE = 12400,
+    SKILL_CATEGORY = 12500,
+    SKILL = 12600,
+    PROOF = 12700,
+    PROJECT = 12800,
+    CONTACT_MESSAGE = 12900,
+    SITE_SETTINGS = 13000,
 }
 
 export class CommonException {
